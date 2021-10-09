@@ -1,5 +1,10 @@
 // Define global variables
 
+let startForm = document.getElementById("start-box");
+let scoreBox = documennt.getElementById("score-box");
+let scoreBoard = document.getElementById("score-board");
+let questionForm = document.getElementById("question-box");
+
 answerListItem = document.querySelector("#answers");
 questionItem = document.querySelector("#question");
 
@@ -7,9 +12,29 @@ let scoreBox = document.querySelector("#score-value");
 
 let currentScore = 0;
 
+let timeRemaining = 60;
+
 //Code for timer
 //  start timer
 //  display timer remianing on screen span - timer_coutdown
+function startTimer() {
+    const timeDisplay = document.getElementById("timer-countdown");
+  
+    intervalID = setInterval(function () {
+      timeRemaining--;
+  
+      timeDisplay.innerText = timeRemaining + "s";
+  
+      if (timeRemaining <= 0) {
+        stopTimer();
+      }
+    }, 1000);
+  }
+  
+  function stopTimer() {
+    clearInterval(intervalID);
+    document.getElementById()
+  }
 
 
 //Loading screen:
