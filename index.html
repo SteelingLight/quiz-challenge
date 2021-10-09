@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Quiz Game</title>
+</head>
+<body>
+    <header class="container">
+        <button class="score">View High Scores</button>
+        <p class="timer">
+            Time Remaining: <span id="timer-countdown">60s</span>
+        </p>
+    </header>
+    <main class="container">
+        <div class="question-box">
+    
+            <p class="question" id="question">
+                This is the question?
+            </p>
+            <ol class="answers" id="answers">
+                <li>Answer 1</li>
+                <li>Answer 2</li>
+                <li>Answer 3</li>
+                <li>Answer 4</li>
+            </ol>
+            <p class="current-score">
+                Score: <span id="score-value">0</span>
+            </p>
+        </div>
+        <div class="start-box">
+            <div>
+                <h2>Quiz Challenge</h2>
+                <p class="start-message">
+                    This is a timed quiz challenge. You have 60 seconds to answer as many questions as you can. Every correct answer is worth 2 points, every incorrect answer will result in a lose of 1 point and 5 seconds off the timer.
+                </p><br>
+                <h3>Press start button to begin.</h3>
+                <button class="btn-start">Start</button>
+            </div>
+        </div>
+        <div class="score-box">
+            <div>
+                <p>Your final score is: <span id="final_score">50</span></p>
+                <label for="initials">Enter Initials -</label><br>
+                <input type="text" name="initials" id="initials">
+                <button class="btn-save">Save</button>
+            </div>
+        </div>
+        <div class="score-board">
+            <h2>High Scores</h2>
+            <div>
+                <ol class="high_scores">
+                    <li>LAH 50</li>
+                </ol>
+                
+            </div>
+        </div>
+    </main>
+
+    <script src="./assets/js/questions.js"></script>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+</html>
