@@ -1,7 +1,7 @@
 // Define global variables
 
 let startForm = document.getElementById("start-box");
-let scoreBox = documennt.getElementById("score-box");
+let scoreForm = document.getElementById("score-box");
 let scoreBoard = document.getElementById("score-board");
 let questionForm = document.getElementById("question-box");
 
@@ -12,7 +12,7 @@ let scoreBox = document.querySelector("#score-value");
 
 let currentScore = 0;
 
-let timeRemaining = 60;
+let timeRemaining = 5;
 
 //Code for timer
 //  start timer
@@ -33,7 +33,8 @@ function startTimer() {
   
   function stopTimer() {
     clearInterval(intervalID);
-    document.getElementById()
+    questionForm.style.display = "none";
+    scoreForm.style.display = "flex";
   }
 
 
@@ -43,6 +44,14 @@ function startTimer() {
 //      hide start form
 //      show question form
 //      start timer
+document.getElementById("start").addEventListener("click", function(){
+    startForm.style.display = "none";
+    questionForm.style.display = "flex";
+    timeRemaining = 5;
+    currentScore = 0;
+    startTimer();
+    loadQuestion();
+})
 
 
 
