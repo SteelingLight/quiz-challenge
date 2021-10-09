@@ -1,5 +1,9 @@
 // Define global variables
 
+var highScore = [{score:50,initial:"AH"}];
+
+let initials = document.getElementById("initials");
+
 let startForm = document.getElementById("start-box");
 let scoreForm = document.getElementById("score-box");
 let scoreBoard = document.getElementById("score-board");
@@ -12,7 +16,7 @@ let scoreBox = document.querySelector("#score-value");
 
 let currentScore = 0;
 
-let timeRemaining = 5;
+let timeRemaining = 60;
 
 //Code for timer
 //  start timer
@@ -47,7 +51,7 @@ function startTimer() {
 document.getElementById("start").addEventListener("click", function(){
     startForm.style.display = "none";
     questionForm.style.display = "flex";
-    timeRemaining = 5;
+    timeRemaining = 60;
     currentScore = 0;
     startTimer();
     loadQuestion();
@@ -107,20 +111,16 @@ var loadQuestion = function(){
 }
 
 document.getElementById("answers").addEventListener("click", function(e){
-    console.log(e.target);
-    console.log(e.target.dataset.correctAnswer);
+    
 
     if (e.target.dataset.correctAnswer === "true") {
-        console.log(e.target.dataset.correctAnswer);
         currentScore = currentScore + 2;
         scoreBox.innerHTML=currentScore;
-        console.log(document.getElementById("score-value").innerHTML);
     }
     else {
-        console.log("Incorrect");
         currentScore = currentScore - 1;
         scoreBox.innerHTML=currentScore;
-        console.log(document.getElementById("score-value").innerHTML);
+        timeRemaining -= 5;
     }
 
     loadQuestion();
@@ -132,7 +132,17 @@ document.getElementById("answers").addEventListener("click", function(e){
 //  save initials and score to local storage
 //  hide score form
 //  show score board
-
+document.getElementById("save").addEventListener("click", function(){
+    if (initials.value){
+    highScore.push({score:currentScore,initial:initials.value});
+    localStorage.setItem("score",JSON.stringify(highScore));
+    scoreForm.style.display = "none";
+    scoreBoard.style.display = "flex";
+    }
+    else{
+        alert("please enter initialst")
+    }
+})
 
 //Score Board
 //  Retrieve values from local storage
@@ -142,4 +152,4 @@ document.getElementById("answers").addEventListener("click", function(e){
 //  close score board
 //  open start form
 
-loadQuestion();
+

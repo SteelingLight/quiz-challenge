@@ -78,7 +78,7 @@
     padding: 25px;
     min-height: 300px;
     min-width: 400px;
-    display:none;
+    display:flex;
     flex-direction: column;
   }
 
