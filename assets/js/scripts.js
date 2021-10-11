@@ -3,6 +3,7 @@
 //array varialbe
 var highScore = [];
 
+
 let initials = document.getElementById("initials");
 
 let scoreList = document.getElementById("score-list")
@@ -79,7 +80,6 @@ document.getElementById("start").addEventListener("click", function(){
 //  show score form
 
 var createAnswerList = function(answerList) {
-    console.log(answerList);
 
     //document.getElementById("answers").innerHTML = "";
     answerListItem.innerHTML = "";
@@ -103,12 +103,13 @@ var loadAnswers = function(){
 
 var loadQuestion = function(){
 
-    let rndNumner = Math.floor(Math.random() * questions.length);
+    
 
-    console.log(questions[rndNumner].Question);
+    let rndNumner = Math.floor(Math.random() * questions.length);
     questionItem.textContent = questions[rndNumner].Question;
     var answerList = questions[rndNumner].Answers;
     createAnswerList(answerList);
+    questions.splice(rndNumner, 1);
 }
 
 document.getElementById("answers").addEventListener("click", function(e){
@@ -125,7 +126,7 @@ document.getElementById("answers").addEventListener("click", function(e){
         timeRemaining -= 5;
         finalScore.innerHTML = currentScore;
     }
-
+    
     loadQuestion();
 });
 //Score form
