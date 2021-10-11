@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="container">
-        <button class="score">View High Scores</button>
+        <button class="score" id="high-scores">View High Scores</button>
         <p class="timer">
             Time Remaining: <span id="timer-countdown">60s</span>
         </p>
@@ -51,12 +51,13 @@
         <div class="score-board" id="score-board">
             <h2>High Scores</h2>
             <div>
-                <ol class="high_scores">
+                <ol class="high_scores" id="score-list">
                     <li>LAH 50</li>
                 </ol>
 
             </div>
-                <button class="btn-close" id="close">Close</button>
+                <button class="btn-clear" id="btn-clear">Clear</button>
+                <button class="btn-close" id="btn-close">Close</button>
         </div>
     </main>
 

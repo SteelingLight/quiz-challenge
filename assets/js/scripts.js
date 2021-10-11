@@ -1,9 +1,11 @@
 // Define global variables
 
-var highScore = [{score:50,initial:"AH"}];
+//array varialbe
+var highScore = [];
 
 let initials = document.getElementById("initials");
 
+let scoreList = document.getElementById("score-list")
 let startForm = document.getElementById("start-box");
 let scoreForm = document.getElementById("score-box");
 let scoreBoard = document.getElementById("score-board");
@@ -41,7 +43,6 @@ function startTimer() {
     clearInterval(intervalID);
     questionForm.style.display = "none";
     scoreForm.style.display = "flex";
-    currentScore = scoreBox.InnerHTML;
   }
 
 
@@ -118,14 +119,14 @@ document.getElementById("answers").addEventListener("click", function(e){
 
     if (e.target.dataset.correctAnswer === "true") {
         currentScore = currentScore + 2;
-        finalScore.innerHTML = currentScore;
         scoreBox.innerHTML=currentScore;
+        finalScore.innerHTML = currentScore;
     }
     else {
         currentScore = currentScore - 1;
         scoreBox.innerHTML=currentScore;
-        finalScore.innerHtML=currentScore;
         timeRemaining -= 5;
+        finalScore.innerHTML = currentScore;
     }
 
     loadQuestion();
@@ -140,10 +141,9 @@ document.getElementById("answers").addEventListener("click", function(e){
 
 document.getElementById("save").addEventListener("click", function(){
     if (initials.value){
-    highScore.push({score:finalScore, initial:initials.value});
+    highScore.push({score:currentScore,initial:initials.value});
     localStorage.setItem("score", JSON.stringify(highScore));
-    //scoreForm.style.display = "none";
-    //scoreBoard.style.display = "flex";
+    loadScores();
     }
     else{
         alert("please enter initials")
@@ -157,4 +157,43 @@ document.getElementById("save").addEventListener("click", function(){
 //  listen for click on close button
 //  close score board
 //  open start form
+function loadScores(){
+    questionForm.style.display = "none";
+    startForm.style.display = "none";
+    scoreForm.style.display = "none";
+    scoreBoard.style.display="flex";
+    localStorage.setItem("highscore",JSON.stringify(highScore));
 
+    scoreList.innerHTML="";
+    highScore = JSON.parse(localStorage.getItem('highscore'));
+
+    highScore.sort((a, b) => b.score - a.score);
+
+    for (let i = 0; i < highScore.length; i++) {
+   
+        var hScore = document.createElement("li");
+        hScore.className = "score";
+        hScore.textContent = highScore[i].initial + " " + highScore[i].score;
+    
+        scoreList.append(hScore);
+    }
+}
+
+document.getElementById("high-scores").addEventListener("click", function(){
+    loadScores();
+});
+
+document.getElementById("btn-clear").addEventListener("click", function(){
+    highScore = [];
+    localStorage.setItem("score",JSON.stringify(highScore));
+    loadScores();
+});
+
+
+document.getElementById("btn-close").addEventListener("click", function(){
+    startForm.style.display="flex";
+    questionForm.style.display="none";
+    scoreForm.style.display="none";
+    scoreBoard.style.display="none";
+
+});
