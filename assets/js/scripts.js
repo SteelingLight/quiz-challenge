@@ -14,9 +14,11 @@ questionItem = document.querySelector("#question");
 
 let scoreBox = document.querySelector("#score-value");
 
+let finalScore = document.querySelector("#final_score");
+
 let currentScore = 0;
 
-let timeRemaining = 60;
+let timeRemaining = 5;
 
 //Code for timer
 //  start timer
@@ -39,6 +41,7 @@ function startTimer() {
     clearInterval(intervalID);
     questionForm.style.display = "none";
     scoreForm.style.display = "flex";
+    currentScore = scoreBox.InnerHTML;
   }
 
 
@@ -51,7 +54,7 @@ function startTimer() {
 document.getElementById("start").addEventListener("click", function(){
     startForm.style.display = "none";
     questionForm.style.display = "flex";
-    timeRemaining = 60;
+    timeRemaining = 5;
     currentScore = 0;
     startTimer();
     loadQuestion();
@@ -115,11 +118,13 @@ document.getElementById("answers").addEventListener("click", function(e){
 
     if (e.target.dataset.correctAnswer === "true") {
         currentScore = currentScore + 2;
+        finalScore.innerHTML = currentScore;
         scoreBox.innerHTML=currentScore;
     }
     else {
         currentScore = currentScore - 1;
         scoreBox.innerHTML=currentScore;
+        finalScore.innerHtML=currentScore;
         timeRemaining -= 5;
     }
 
@@ -132,15 +137,16 @@ document.getElementById("answers").addEventListener("click", function(e){
 //  save initials and score to local storage
 //  hide score form
 //  show score board
+
 document.getElementById("save").addEventListener("click", function(){
     if (initials.value){
-    highScore.push({score:currentScore,initial:initials.value});
-    localStorage.setItem("score",JSON.stringify(highScore));
-    scoreForm.style.display = "none";
-    scoreBoard.style.display = "flex";
+    highScore.push({score:finalScore, initial:initials.value});
+    localStorage.setItem("score", JSON.stringify(highScore));
+    //scoreForm.style.display = "none";
+    //scoreBoard.style.display = "flex";
     }
     else{
-        alert("please enter initialst")
+        alert("please enter initials")
     }
 })
 
@@ -151,5 +157,4 @@ document.getElementById("save").addEventListener("click", function(){
 //  listen for click on close button
 //  close score board
 //  open start form
-
 

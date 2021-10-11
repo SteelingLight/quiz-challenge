@@ -78,7 +78,7 @@
     padding: 25px;
     min-height: 300px;
     min-width: 400px;
-    display:flex;
+    display:none;
     flex-direction: column;
   }
 
@@ -97,6 +97,11 @@
     padding: 25px;
     min-height: 300px;
     min-width: 400px;
-    display:none;
+    display:flex;
     flex-direction: column;
+  }
+
+  .btn-close {
+    align-items: flex-start;
+  
   }
