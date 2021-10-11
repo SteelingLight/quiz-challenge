@@ -20,7 +20,7 @@ let finalScore = document.querySelector("#final_score");
 
 let currentScore = 0;
 
-let timeRemaining = 5;
+let timeRemaining = 60;
 
 //Code for timer
 //  start timer
@@ -55,7 +55,7 @@ function startTimer() {
 document.getElementById("start").addEventListener("click", function(){
     startForm.style.display = "none";
     questionForm.style.display = "flex";
-    timeRemaining = 5;
+    timeRemaining = 60;
     currentScore = 0;
     startTimer();
     loadQuestion();
@@ -85,9 +85,6 @@ var createAnswerList = function(answerList) {
     answerListItem.innerHTML = "";
 
     for (let i = 0; i < answerList.length; i++) {
-
-        console.log(Object.keys(answerList[i]));
-        console.log(Object.values(answerList[i]));
 
         var questionAnswer = document.createElement("li");
         questionAnswer.className = "answer";
